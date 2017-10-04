@@ -1,6 +1,6 @@
 ##variable fname contains filename as string to which final result 
-##should be stored. The separate of output file is ","
-##It is presumed that in archive with all data is unpacked to working directory
+##should be stored. The separate of output file is " "
+##It is presumed that archive with all data is unpacked to working directory
 ##with original folder tree. Therefore the upper-level folder in working 
 ##directory is UCI HAR Dataset
 run_analysis <- function(fname="tidy_data.csv"){
@@ -76,8 +76,10 @@ run_analysis <- function(fname="tidy_data.csv"){
   
   ##Creation of new data table with average of mean and standard deviation values per subject and activity type 
   new_data<-tide_data %>% 
-    ##Creates groups activity type, subject and statistical operation
-    group_by(Activity_type, Subject_id, Statistical_operation) %>% 
+    ##Creates groups activity type, subject, statistical operation and features of original variables
+    group_by(Subject_id, Activity_type, Fast_Fourier_Transform, 
+             Axis_name, Device_type, Acceleration_type, Jerk_type, Magnitude, 
+             Statistical_operation) %>% 
     ##Calculates average figures per activity, subject and statistical operation
     summarize(Average_value=mean(Measurement)) %>% 
     ##Substitutes variables Statistical_operation and Measurement by Mean and Standard
@@ -86,4 +88,5 @@ run_analysis <- function(fname="tidy_data.csv"){
   ##Writes information from new summarized table to the file which name was
   ##specified in fname variable which is input of function run_analysis
   write.table(new_data, fname, row.name=FALSE)
+ 
   }

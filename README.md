@@ -8,7 +8,7 @@ The code processes information regarding measurements of signals from Samsung wa
 average summary per activity type and per subject for Mean and Standard deviation values
 
 The code represents the function which input parameter fname contains filename where to store the output dataset. 
-By default it was set as "tidy_data.csv". The output file separator is ",".
+By default it was set as "tidy_data.csv". The output file separator is " ".
 
 It is presumed that the archive with all data is unpacked to working directory with original folder tree stored. 
 Therefore the upper-level folder in working directory is UCI HAR Dataset.
